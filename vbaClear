@@ -1,0 +1,13 @@
+'For Clearbutton Macro Module. Clears textboxes and unfilters selection.
+
+Sub Clear()
+    On Error Resume Next
+        ActiveSheet.ShowAllData
+        ActiveSheet.TextBox1.Text = ""
+        ActiveSheet.TextBox2.Text = ""
+        ActiveSheet.TextBox3.Text = ""
+        Selection.AutoFilter
+    On Error GoTo 0
+
+End Sub
+
