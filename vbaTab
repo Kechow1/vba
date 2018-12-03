@@ -1,0 +1,9 @@
+'Sheet1 code to enable tabbing between textbox
+
+Private Sub TextBox1_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+If KeyCode = vbKeyTab Then ActiveSheet.TextBox2.Activate
+End Sub
+
+Private Sub TextBox2_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+If KeyCode = vbKeyTab Then ActiveSheet.TextBox3.Activate
+End Sub
