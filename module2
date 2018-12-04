@@ -1,0 +1,75 @@
+Public Function GetTextBoxValue(TextBox1 As String) As String
+
+'Makes textbox text referenceable
+
+    On Error GoTo 0
+    Dim o As OLEObject
+    Set o = Sheet1.OLEObjects(TextBox1)
+    On Error Resume Next
+    If Not o Is Nothing Then
+        GetTextBoxValue = o.Object.Text
+    End If
+End Function
+Public Function GetTextBoxValue2(TextBox2 As String) As String
+
+    On Error GoTo 0
+    Dim o As OLEObject
+    Set o = Sheet1.OLEObjects(TextBox2)
+    On Error Resume Next
+    If Not o Is Nothing Then
+        GetTextBoxValue2 = o.Object.Text
+    End If
+End Function
+Public Function GetTextBoxValue3(TextBox3 As String) As String
+
+    On Error GoTo 0
+    Dim o As OLEObject
+    Set o = Sheet1.OLEObjects(TextBox3)
+    On Error Resume Next
+    If Not o Is Nothing Then
+        GetTextBoxValue3 = o.Object.Text
+    End If
+End Function
+
+Sub Search()
+
+'Declaring variables
+
+    Dim ID As Variant
+    Dim FirstName As Variant
+    Dim LastName As Variant
+
+    FirstName = GetTextBoxValue("TextBox1")
+    LastName = GetTextBoxValue2("TextBox2")
+    ID = GetTextBoxValue3("TextBox3")
+
+' Searches for the input in the First Name and Last Name textbox
+
+    If (ActiveSheet.TextBox1.Text <> "" And ActiveSheet.TextBox2.Text <> "") Then
+         ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=18, Criteria1:=FirstName & "*"
+         ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=17, Criteria1:=LastName & "*"
+         
+    ElseIf (ActiveSheet.TextBox2.Text <> "" And ActiveSheet.TextBox1.Text = "" And ActiveSheet.TextBox3.Text = "") Then
+         ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=17, Criteria1:=LastName & "*"
+         
+    ElseIf (ActiveSheet.TextBox1.Text <> "" And ActiveSheet.TextBox2.Text = "" And ActiveSheet.TextBox3.Text = "") Then
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=18, Criteria1:=FirstName & "*"
+        
+    ElseIf (ActiveSheet.TextBox3.Text <> "" And ActiveSheet.TextBox1.Text = "" And ActiveSheet.TextBox2.Text = "") Then
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=16, Criteria1:=ID & "*"
+        
+    ElseIf (ActiveSheet.TextBox1.Text <> "" And ActiveSheet.TextBox3.Text <> "") Then
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=18, Criteria1:=FirstName
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=16, Criteria1:=ID & "*"
+        
+    ElseIf (ActiveSheet.TextBox2.Text <> "" And ActiveSheet.TextBox3.Text <> "") Then
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=17, Criteria1:=LastName
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=16, Criteria1:=ID & "*"
+        
+    ElseIf (ActiveSheet.TextBox1.Text = "" And ActiveSheet.TextBox2.Text = "" And ActiveSheet.TextBox3.Text = "") Then
+    MsgBox "Can't leave the textboxes empty. Please enter First Name, Last Name, or ID. ", vbOKOnly
+        
+        Exit Sub
+    End If
+
+End Sub
