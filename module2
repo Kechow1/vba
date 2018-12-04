@@ -61,11 +61,11 @@ Sub Search()
         ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=16, Criteria1:=ID & "*"
         
     ElseIf (ActiveSheet.TextBox1.Text <> "" And ActiveSheet.TextBox3.Text <> "") Then
-        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=18, Criteria1:=FirstName
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=18, Criteria1:=FirstName & "*"
         ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=16, Criteria1:=ID & "*"
         
     ElseIf (ActiveSheet.TextBox2.Text <> "" And ActiveSheet.TextBox3.Text <> "") Then
-        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=17, Criteria1:=LastName
+        ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=17, Criteria1:=LastName & "*"
         ActiveSheet.Range("$A$6:$R$3110").AutoFilter Field:=16, Criteria1:=ID & "*"
         
     ElseIf (ActiveSheet.TextBox1.Text = "" And ActiveSheet.TextBox2.Text = "" And ActiveSheet.TextBox3.Text = "") Then
