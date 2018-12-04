@@ -31,6 +31,8 @@ Public Function GetTextBoxValue3(TextBox3 As String) As String
     End If
 End Function
 
+'Search Button Click
+
 Sub Search()
 
 'Declaring variables
