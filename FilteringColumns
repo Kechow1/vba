@@ -1,0 +1,96 @@
+Sub DeleteFirstRow()
+
+Dim i As Long
+
+lst = Range("A" & Rows.Count).End(xlUp).Row
+For i = lst To 1 Step -1
+    If Range("A" & i).Value Like "*Class Schedule Report*" Then
+        Range("A" & i).EntireRow.Delete
+    End If
+Next i
+
+End Sub
+Sub DeleteColumns()
+
+'Deletes the unnecessary columns
+
+Dim columnTitles(0 To 23) As String
+    columnTitles(0) = "Session"
+    columnTitles(1) = "Acad Group"
+    columnTitles(2) = "Course ID"
+    columnTitles(3) = "Offer Nbr"
+    columnTitles(4) = "Assoc"
+    columnTitles(5) = "Auto Enrol"
+    columnTitles(6) = "Topic ID"
+    columnTitles(7) = "Crse Topic"
+    columnTitles(8) = "Sch Print"
+    columnTitles(9) = "Enrl Stat"
+    columnTitles(10) = "Min Units"
+    columnTitles(11) = "Max Units"
+    columnTitles(12) = "CS Number"
+    columnTitles(13) = "TBA Hours"
+    columnTitles(14) = "Pat Nbr"
+    columnTitles(15) = "Start Date"
+    columnTitles(16) = "End Date"
+    columnTitles(17) = "Assign Seq #"
+    columnTitles(18) = "Class Type"
+    columnTitles(19) = "Crse Topic Tl"
+    columnTitles(20) = "Print"
+    columnTitles(21) = "Role"
+    columnTitles(22) = "Empl Rcd#"
+    columnTitles(23) = "Room Char"
+    
+Do While (True)
+Dim didDelete As Boolean
+didDelete = False
+
+     Dim c As Range
+        For Each c In ActiveSheet.UsedRange
+
+             If c.Row > 1 Then
+                Exit For
+            End If
+
+            For Each Title In columnTitles
+
+                If (Title = c.Value) Then
+                    Columns(c.Column).Delete
+                    didDelete = True
+                    Exit For
+                End If
+
+            Next
+        Next c
+
+        If (didDelete = False) Then
+        Exit Do
+        End If
+Loop
+
+End Sub
+
+Sub HideColumns()
+
+'autofits the columns
+Sheets(1).Columns.AutoFit
+
+'hides columns that might be needed
+Dim c As Range
+
+For Each c In Range("A1:AA1").Cells
+    If c.Value = "Career" Then
+        c.EntireColumn.Hidden = True
+    ElseIf c.Value = "Wait Cap" Then
+        c.EntireColumn.Hidden = True
+    ElseIf c.Value = "Wait Tot" Then
+        c.EntireColumn.Hidden = True
+    ElseIf c.Value = "Load Factor" Then
+        c.EntireColumn.Hidden = True
+    ElseIf c.Value = "Work Load" Then
+        c.EntireColumn.Hidden = True
+    ElseIf c.Value = "Job Code" Then
+        c.EntireColumn.Hidden = True
+    End If
+Next
+    
+End Sub
