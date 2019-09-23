@@ -1,0 +1,7 @@
+
+Sub FilterFunds()
+
+    ActiveSheet.Range("$A$1:$AB$5672").AutoFilter Field:=15, Criteria1:=Array("NG001", "NG025", "NR101", "SU204"), _
+    Operator:=xlFilterValues
+
+End Sub
