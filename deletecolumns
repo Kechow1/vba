@@ -1,0 +1,57 @@
+Sub DeleteColumns()
+
+'Deletes the unnecessary columns
+
+Dim columnTitles(0 To 22) As String
+    columnTitles(0) = "Acad Group"
+    columnTitles(1) = "Course ID"
+    columnTitles(2) = "Offer Nbr"
+    columnTitles(3) = "Assoc"
+    columnTitles(4) = "Auto Enrol"
+    columnTitles(5) = "Topic ID"
+    columnTitles(6) = "Crse Topic"
+    columnTitles(7) = "Sch Print"
+    columnTitles(8) = "Enrl Stat"
+    columnTitles(9) = "Min Units"
+    columnTitles(10) = "Max Units"
+    columnTitles(11) = "CS Number"
+    columnTitles(12) = "TBA Hours"
+    columnTitles(13) = "Pat Nbr"
+    columnTitles(14) = "Start Date"
+    columnTitles(15) = "End Date"
+    columnTitles(16) = "Assign Seq #"
+    columnTitles(17) = "Class Type"
+    columnTitles(18) = "Crse Topic Tl"
+    columnTitles(19) = "Print"
+    columnTitles(20) = "Role"
+    columnTitles(21) = "Empl Rcd#"
+    columnTitles(22) = "Room Char"
+    
+Do While (True)
+Dim didDelete As Boolean
+didDelete = False
+
+     Dim c As Range
+        For Each c In ActiveSheet.UsedRange
+
+             If c.Row > 1 Then
+                Exit For
+            End If
+
+            For Each Title In columnTitles
+
+                If (Title = c.Value) Then
+                    Columns(c.Column).Delete
+                    didDelete = True
+                    Exit For
+                End If
+
+            Next
+        Next c
+
+        If (didDelete = False) Then
+        Exit Do
+        End If
+Loop
+
+End Sub
