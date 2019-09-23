@@ -1,0 +1,5 @@
+Sub Autofit_columns()
+With ActiveSheet.UsedRange.SpecialCells(xlCellTypeVisible)
+    .EntireColumn.Autofit
+End With
+End Sub
